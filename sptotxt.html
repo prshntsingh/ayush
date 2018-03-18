@@ -22,6 +22,7 @@
       }
       button.right {
         margin-top: 15px;
+        margin-left: 25px;
         float: right;
       }
     </style>
@@ -46,8 +47,7 @@
     <script type="text/javascript">
 
       function startConverting () {
-        $("#result").val("");
-        var r = $("#result").val();
+        var r= $("#result");
         if('webkitSpeechRecognition' in window){
           var speechRecognizer = new webkitSpeechRecognition();
           speechRecognizer.continuous = true;
