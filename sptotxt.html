@@ -68,7 +68,7 @@
                 interimTranscripts += transcript;
               }
             }
-            r.innerHTML = '<span style="color:white">' + finalTranscripts + '</span>' + '<span style="color:white">' + interimTranscripts + '</span>';
+            r.innerHTML = finalTranscripts + ' ' + interimTranscripts + ' ';
           };
           speechRecognizer.onerror = function (event) {
           };
