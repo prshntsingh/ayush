@@ -69,7 +69,7 @@
                 interimTranscripts += transcript;
               }
             }
-            r.val(finalTranscripts + ' ' + interimTranscripts + ' ');
+            $("#result").val(finalTranscripts + ' ' + interimTranscripts + ' ');
           };
           speechRecognizer.onerror = function (event) {
           };
