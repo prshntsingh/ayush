@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Speech to text converter in JS</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <style type="text/css">
+      body {
+        color: white;
+        background-image: url("./img/header.jpg");
+      }
+      .container {
+        margin-top: 50px;
+      }
+      a {
+        color: white;
+      }
+      a:hover {
+        color: black;
+      }
+      button.right {
+        margin-top: 15px;
+        float: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <button class="right btn btn-info btn-md" role="button"><a href="index.html">Home</a></button>
+      <h1>Realtime Speech to Text Converter </h1>
+      <hr>
+      <h4>Converts <a href="https://www.ayurtimes.com/ayurvedic-measurements/"><strong>Ayurvedic Metric Measurements</strong></a> to <strong>Modern Metric Measurements</strong></h4>
+      
+
+      <form>
+        <div class="form-group">
+          <label for="exampleTextarea"></label>
+          <textarea class="form-control" id="exampleTextarea" rows="8" placeholder="Whatever you speak will appear as text in this box . After checking the text, press the convert button to get the required conversions in Modern Metric System"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="microphone" onclick="startConverting();"><i class="fa fa-microphone"></i></button>
+        <button type="submit" class="btn btn-success">Convert</button>
+      </form>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      var r = document.getElementById('result');
+
+      function startConverting () {
+        if('webkitSpeechRecognition' in window){
+          var speechRecognizer = new webkitSpeechRecognition();
+          speechRecognizer.continuous = true;
+          speechRecognizer.interimResults = true;
+          speechRecognizer.lang = 'en-IN';
+          speechRecognizer.start();
+
+          var finalTranscripts = '';
+
+          speechRecognizer.onresult = function(event){
+            var interimTranscripts = '';
+            for(var i = event.resultIndex; i < event.results.length; i++){
+              var transcript = event.results[i][0].transcript;
+              transcript.replace("\n", "<br>");
+              if(event.results[i].isFinal) {
+                finalTranscripts += transcript;
+              }
+              else {
+                interimTranscripts += transcript;
+              }
+            }
+            r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
+          };
+          speechRecognizer.onerror = function (event) {
+          };
+        }
+        else {
+          r.innerHTML = 'Your browser is not supported. If google chrome, please upgrade!';
+        }
+      }
+
+      var wta = ["PARAMANU","DHAVANSHI","MARICHI","LAL SARSHAP","TUNDAL","DHANYAMASH","YAVA","RATTI","ANDIKA","MASHAK","SHAAN","KOL","TOLA","KARSHA","SHUKTI","PAL","CHHATANK","PRASRTIS","CHHATAAK","KUDAV","MANIKA","PRASTHA","SER","ADHAKA","TULA","DRONA","SURPA","DRONI","BHARA","KHARI"];
+      var wtm = [0.0016,0.05,0.32,1.95,15.62,31.25,62.5,125,250,1,3,6,12,12,24,48,60,96,186,192,384,768,960,3073,4800,12228,24576,49152,96000,196608];
+      var wtu = ["mg","mg","mg","mg","mg","mg","mg","mg","mg","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm"];
+      var timea=["KSANA","LAVA","NIMESHA","KASTHA","KALA","GHATI","MUHURTA","AHORATRA","PAKSA","MASA","RITU","AYANA","SAMVATSARA","YUGA"];
+      var timem=[0.38,0.77,1.55,4.66,140,24,48,24,15,30,60,6,12,5];
+      var timeu=["seconds","seconds","seconds","seconds","seconds","minutes","minutes","hours","days","days","days","months","months","years"];
+      var lena=["YAVODARA","ANGULA","BITAHASTI","ARATNI","HASTA","RAJAHASTA","VYAMA"];
+      var lenm=[2.4,1.95,22.86,41.91,45.72,55.88,182.88];
+      var lenu=["mm","cm","cm","cm","cm","cm","cm"];
+      function run () {
+        var text = $('#result').text();
+        text=text.split(" ");
+        if(parseInt(text[0])){
+          var i,f=0,uni="",out="";
+          var str=text[1].toUpperCase();
+          for(i=0;i<wtm.length;i++) {
+            if(str==wta[i]) {
+              f=1;
+              out=parseInt(text[0])*wtm[i];
+              uni=wtu[i];
+              break;
+            }
+          }
+          if(f==1)
+            alert(out+uni);
+          else {
+            for(i=0;i<timea.length;i++) {
+              if(str==timea[i]) {
+                f=1;
+                out=parseInt(text[0])*timem[i];
+                uni=timeu[i];
+                break;
+              }
+            }
+            if(f==1)
+              alert(out+uni);
+            else {
+              for(i=0;i<lena.length;i++) {
+                if(str==lena[i]) {
+                  f=1;
+                  out=parseInt(text[0])*lenm[i];
+                  uni=lenu[i];
+                  break;
+                }
+              }
+              if(f==1)
+                alert(out+uni);
+              else
+                alert("galat dala hai");
+            }
+          }
+        }
+      }
+    </script>
+    
+  </body>
