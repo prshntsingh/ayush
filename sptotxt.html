@@ -48,7 +48,7 @@
       var r;
       function startConverting () {
         r = document.getElementById('result');
-        alert(r.innerHTML);
+        alert(r.val());
         if('webkitSpeechRecognition' in window){
           var speechRecognizer = new webkitSpeechRecognition();
           speechRecognizer.continuous = true;
@@ -70,8 +70,7 @@
                 interimTranscripts += transcript;
               }
             }
-            r.innerHTML = "";
-            r.innerHTML = finalTranscripts + ' ' + interimTranscripts + ' ';
+            r.val(finalTranscripts + ' ' + interimTranscripts + ' ');
           };
           speechRecognizer.onerror = function (event) {
           };
@@ -91,7 +90,7 @@
       var lenm=[2.4,1.95,22.86,41.91,45.72,55.88,182.88];
       var lenu=["mm","cm","cm","cm","cm","cm","cm"];
       function run () {
-        var text = $('#result').text();
+        var text = $('#result').val();
         text=text.split(" ");
         if(parseInt(text[0])){
           var i,f=0,uni="",out="";
