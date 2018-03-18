@@ -45,11 +45,12 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-
+      var r;
       function startConverting () {
-        $("#result").html('');
-        $("#result").text('');
-        var r = document.getElementById('result');
+        $("textarea).val("");
+        $("textarea).val("");
+        $("textarea").val("");
+        r = document.getElementById('result');
         alert(r);
         if('webkitSpeechRecognition' in window){
           var speechRecognizer = new webkitSpeechRecognition();
