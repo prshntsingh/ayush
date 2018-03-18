@@ -47,6 +47,8 @@
     <script type="text/javascript">
 
       function startConverting () {
+        $("#result").html('');
+        $("#result").text('');
         var r = document.getElementById('result');
         if('webkitSpeechRecognition' in window){
           var speechRecognizer = new webkitSpeechRecognition();
