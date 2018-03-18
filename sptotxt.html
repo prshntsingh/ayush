@@ -102,7 +102,7 @@
             }
           }
           if(f==1)
-            alert(out+uni);
+            $("#result").val(out+" "+unit);
           else {
             for(i=0;i<timea.length;i++) {
               if(str==timea[i]) {
@@ -113,7 +113,7 @@
               }
             }
             if(f==1)
-              alert(out+uni);
+              $("#result").val(out+" "+unit);
             else {
               for(i=0;i<lena.length;i++) {
                 if(str==lena[i]) {
@@ -124,9 +124,9 @@
                 }
               }
               if(f==1)
-                alert(out+uni);
+                $("#result").val(out+" "+unit);
               else
-                alert("galat dala hai");
+                $("#result").val("Wrong entry");
             }
           }
         }
