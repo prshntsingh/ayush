@@ -48,7 +48,7 @@
       var r;
       function startConverting () {
         r = document.getElementById('result');
-        alert(r);
+        alert(r.innerHTML);
         if('webkitSpeechRecognition' in window){
           var speechRecognizer = new webkitSpeechRecognition();
           speechRecognizer.continuous = true;
@@ -70,6 +70,7 @@
                 interimTranscripts += transcript;
               }
             }
+            r.innerHTML = "";
             r.innerHTML = finalTranscripts + ' ' + interimTranscripts + ' ';
           };
           speechRecognizer.onerror = function (event) {
