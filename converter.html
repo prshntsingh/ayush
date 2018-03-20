@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Speech to text converter in JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <style type="text/css">
+      body {
+        margin-top: 50px;
+      }
+      button {
+        margin-right: 12px;
+      }
+      .input-group {
+        margin-top: 5px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <div class="container">
+      <h3> Converter from Ayurveda Metric System To Modern Metric System </h3>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Time Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="timeayu" type="number" oninput="TimeConverter(this.value)" onchange="TimeConverter(this.value)"> 
+            <select class="form-control" id="timemod" name="Time Unit">
+              <option value="KSANA">KSANA</option>
+              <option value="LAVA">LAVA</option>
+              <option value="KALA">KALA</option>
+              <option value="KASTHA">KASTHA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="time1" type="number" placeholder="time1">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="time2" type="number" placeholder="time2">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="time3" type="number" placeholder="time3">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="time4" type="number" placeholder="time4">
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Length Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="lenayu" type="number" oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)"> 
+            <select class="form-control" id="lenmod" name="Length Unit">
+              <option value="YAVODARA">YAVODARA</option>
+              <option value="ANGULA">ANGULA</option>
+              <option value="BITAHASTI">BITAHASTI</option>
+              <option value="ARATNI">ARATNI</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="len1" type="number" placeholder="len1">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="len2" type="number" placeholder="len2">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="len3" type="number" placeholder="len3">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="len4" type="number" placeholder="len4">
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Weight Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="wtayu" type="number" oninput="WeightConverter(this.value)" onchange="WeightConverter(this.value)"> 
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="PARAMANU">PARAMANU</option>
+              <option value="DHAVANSHI">DHAVANSHI</option>
+              <option value="MARICHI">MARICHI</option>
+              <option value="LAL SARSHAP">LAL SARSHAP</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="wt1" type="number" placeholder="wt1">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="wt2" type="number" placeholder="wt2">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="wt3" type="number" placeholder="wt3">
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="wt4" type="number" placeholder="wt4">
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      function LengthConverter(valNum) {
+        var lena=["YAVODARA","ANGULA","BITAHASTI","ARATNI","HASTA","RAJAHASTA","VYAMA"];
+        var lenm=[2.4,1.95,22.86,41.91,45.72,55.88,182.88];
+        var lenu=["mm","cm","cm","cm","cm","cm","cm"];
+        var value=$("#lenmod").val();
+        var i;
+        for(i=0;i<lena.length;i++) {
+          if(value==lena[i]) {
+            var fval=valNum*lenm[i];
+            $("#len1").val(fval);
+            $("#len2").val(fval);
+            $("#len3").val(fval);
+            $("#len4").val(fval);
+          }
+        }
+      }
+
+      function TimeConverter(valNum) {
+        var timea=["KSANA","LAVA","NIMESHA","KASTHA","KALA","GHATI","MUHURTA","AHORATRA","PAKSA","MASA","RITU","AYANA","SAMVATSARA","YUGA"];
+        var timem=[0.38,0.77,1.55,4.66,140,24,48,24,15,30,60,6,12,5];
+        var timeu=["seconds","seconds","seconds","seconds","seconds","minutes","minutes","hours","days","days","days","months","months","years"];
+        var value=$("#timemod").val();
+        var i;
+        for(i=0;i<timea.length;i++) {
+          if(value==timea[i]) {
+            var fval=valNum*timem[i];
+            $("#time1").val(fval);
+            $("#time2").val(fval);
+            $("#time3").val(fval);
+            $("#time4").val(fval);
+          }
+        }
+      }
+
+      function WeightConverter(valNum) {
+        var wta = ["PARAMANU","DHAVANSHI","MARICHI","LAL SARSHAP","TUNDAL","DHANYAMASH","YAVA","RATTI","ANDIKA","MASHAK","SHAAN","KOL","TOLA","KARSHA","SHUKTI","PAL","CHHATANK","PRASRTIS","CHHATAAK","KUDAV","MANIKA","PRASTHA","SER","ADHAKA","TULA","DRONA","SURPA","DRONI","BHARA","KHARI"];
+        var wtm = [0.0016,0.05,0.32,1.95,15.62,31.25,62.5,125,250,1,3,6,12,12,24,48,60,96,186,192,384,768,960,3073,4800,12228,24576,49152,96000,196608];
+        var wtu = ["mg","mg","mg","mg","mg","mg","mg","mg","mg","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm","gm"];
+        var value=$("#wtmod").val();
+        var i;
+        for(i=0;i<wta.length;i++) {
+          if(value==wta[i]) {
+            var fval=valNum*wtm[i];
+            $("#wt1").val(fval);
+            $("#wt2").val(fval);
+            $("#wt3").val(fval);
+            $("#wt4").val(fval);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
