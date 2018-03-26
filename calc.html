@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Speech to text converter in JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <style type="text/css">
+      body {
+        margin-top: 50px;
+        background-image: url("calc.jpg");
+      }
+      button {
+        margin-right: 12px;
+      }
+      .input-group {
+        margin-top: 5px;
+        margin-bottom: 20px;
+      }
+      .labels {
+        background-color: #2CB0C5;
+        color: white;
+        text-align: center;
+        padding: 4px;
+        margin-left: 2px;
+        width: 100px;
+      }
+      button a {
+          display: inline-block;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+      }
+      button a:hover {
+        text-decoration: none;
+        color: white;
+      }
+      button.right {
+        float: right;
+        background-color: #f05f40;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <div class="container">
+      <button class="right btn btn-primary btn-md" role="button"><a href="index.html">Home</a></button>
+      <h3> Converter from Ayurveda Metric System To Modern Metric System </h3>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Time Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="timeayu" type="number" oninput="TimeConverter(this.value)" onchange="TimeConverter(this.value)"> 
+            <select class="form-control" id="timemod" data-size="auto" name="Time Unit">
+              <option value="KSANA">KSANA</option>
+              <option value="LAVA">LAVA</option>
+              <option value="KALA">KALA</option>
+              <option value="KASTHA">KASTHA</option>
+              <option value="NIMESHA">NIMESHA</option>
+              <option value="GHATI">GHATI</option>
+              <option value="MUHURTA">MUHURTA</option>
+              <option value="AHORATRA">AHORATRA</option>
+              <option value="PAKSA">PAKSA</option>
+              <option value="MASA">MASA</option>
+              <option value="RITU">RITU</option>
+              <option value="AYANA">AYANA</option>
+              <option value="SAMVATSARA">SAMVATSARA</option>
+              <option value="YUGA">YUGA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="sec" type="number" placeholder="seconds">
+            <span class="labels"> Seconds </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="hr" type="number" placeholder="hours">
+            <span class="labels"> Hours </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="day" type="number" placeholder="days">
+            <span class="labels"> Days </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="year" type="number" placeholder="years">
+            <span class="labels"> Years </span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Length Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="lenayu" type="number" oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)"> 
+            <select class="form-control" id="lenmod" name="Length Unit">
+              <option value="YAVODARA">YAVODARA</option>
+              <option value="ANGULA">ANGULA</option>
+              <option value="BITAHASTI">BITAHASTI</option>
+              <option value="ARATNI">ARATNI</option>
+              <option value="HASTA">HASTA</option>
+              <option value="RAJAHASTA">RAJAHASTA</option>
+              <option value="VYAMA">VYAMA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="cm" type="number" placeholder="centimeters">
+            <span class="labels"> Centieters </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="mm" type="number" placeholder="millimeters">
+            <span class="labels"> Millimeters </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="m" type="number" placeholder="meters">
+            <span class="labels"> Meters </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="dm" type="number" placeholder="decimeters">
+            <span class="labels"> Decimeters </span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Weight Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="wtayu" type="number" oninput="WeightConverter(this.value)" onchange="WeightConverter(this.value)"> 
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="PARAMANU">PARAMANU</option>
+              <option value="DHAVANSHI">DHAVANSHI</option>
+              <option value="MARICHI">MARICHI</option>
+              <option value="LAL SARSHAP">LAL SARSHAP</option>
+              <option value="TUNDAL">TUNDAL</option>
+              <option value="DHANYAMASH">DHANYAMASH</option>
+              <option value="YAVA">YAVA</option>
+              <option value="RATTI">RATTI</option>
+              <option value="ANDIKA">ANDIKA</option>
+              <option value="MASHAK">MASHAK</option>
+              <option value="SHAAN">SHAAN</option>
+              <option value="KOL">KOL</option>
+              <option value="TOLA">TOLA</option>
+              <option value="KARSHA">KARSHA</option>
+              <option value="SHUKTI">SHUKTI</option>
+              <option value="PAL">PAL</option>
+              <option value="SURPA">SURPA</option>
+              <option value="DRONA">DRONA</option>
+              <option value="TULA">TULA</option>
+              <option value="ADHAKA">ADHAKA</option>
+              <option value="SER">SER</option>
+              <option value="KHARI">KHARI</option>
+              <option value="BHARA">BHARA</option>
+              <option value="DRONI">DRONI</option>
+              <option value="PRASTHA">PRASTHA</option>
+              <option value="MANIKA">MANIKA</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="gm" type="number" placeholder="grams">
+            <span class="labels"> Grams </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="mg" type="number" placeholder="milligrams">
+            <span class="labels"> Milligrams </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="kg" type="number" placeholder="kilograms">
+            <span class="labels"> Kilograms </span>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="q" type="number" placeholder="quintals">
+            <span class="labels"> Quintals </span>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      function LengthConverter(valNum) {
+        var lena=["YAVODARA","ANGULA","BITAHASTI","ARATNI","HASTA","RAJAHASTA","VYAMA"];
+        var lenm=[0.24,1.95,22.86,41.91,45.72,55.88,182.88];
+        var value=$("#lenmod").val();
+        var i;
+        for(i=0;i<lena.length;i++) {
+          if(value==lena[i]) {
+            var fval=valNum*lenm[i];
+            $("#cm").val(fval);
+            $("#mm").val(fval*10);
+            $("#m").val(fval/100);
+            $("#dm").val(fval/10);
+          }
+        }
+      }
+
+      function TimeConverter(valNum) {
+        var timea=["KSANA","LAVA","NIMESHA","KASTHA","KALA","GHATI","MUHURTA","AHORATRA","PAKSA","MASA","RITU","AYANA","SAMVATSARA","YUGA"];
+        var timem=[0.38,0.77,1.55,4.66,140,1440,2880,86400,1296000,2592000,5184000,189200000,378400000,157700000];
+        var value=$("#timemod").val();
+        var i;
+        for(i=0;i<timea.length;i++) {
+          if(value==timea[i]) {
+            var fval=valNum*timem[i];
+            $("#sec").val(fval);
+            $("#hr").val(fval/3600);
+            $("#day").val(fval/86400);
+            $("#year").val(fval/31536000);
+          }
+        }
+      }
+
+      function WeightConverter(valNum) {
+        var wta = ["PARAMANU","DHAVANSHI","MARICHI","LAL SARSHAP","TUNDAL","DHANYAMASH","YAVA","RATTI","ANDIKA","MASHAK","SHAAN","KOL","TOLA","KARSHA","SHUKTI","PAL","CHHATANK","PRASRTIS","CHHATAAK","KUDAV","MANIKA","PRASTHA","SER","ADHAKA","TULA","DRONA","SURPA","DRONI","BHARA","KHARI"];
+        var wtm = [0.0000016,0.00005,0.00032,0.00195,0.01562,0.03125,0.0625,0.125,0.250,1,3,6,12,12,24,48,60,96,186,192,384,768,960,3073,4800,12228,24576,49152,96000,196608];
+        var value=$("#wtmod").val();
+        var i;
+        for(i=0;i<wta.length;i++) {
+          if(value==wta[i]) {
+            var fval=valNum*wtm[i];
+            $("#gm").val(fval);
+            $("#mg").val(fval*1000);
+            $("#kg").val(fval/1000);
+            $("#q").val(fval/100000);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
