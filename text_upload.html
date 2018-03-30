@@ -10,7 +10,229 @@
 		<style type="text/css">
 			body{
 				font-family: verdana;
+				margin-top: 5%;<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Upload</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<style type="text/css">
+			body{
+				font-family: verdana;
 				margin-top: 5%;
+				background-color: #EAFAF1;
+				background-image: url("header.jpg");
+			}
+			#convert{
+				font-size: 20px;
+				float: left;
+				margin: 25px 45%;
+				background-color: #f05f40;
+				color: white;
+			}
+			h4 {
+				color: white;
+			}
+			p {
+				color: white;
+			}
+			#more {
+				background-color: #52BE80;
+			}
+
+			button a {
+			    display: inline-block;
+			    color: white;
+			    text-align: center;
+			    text-decoration: none;
+			}
+			button a:hover {
+				text-decoration: none;
+				color: white;
+			}
+			button.right {
+				float: right;
+				background-color: #f05f40;
+			}
+			.option {
+				max-width: 150px;
+				margin-left: 5px;
+			}
+			.units {
+				padding: 8px;
+			}
+		</style>
+</head>
+<body>
+	
+	<div class="container">
+	  	<button class="right btn btn-primary btn-md" role="button"><a href="https://mankabitm.github.io/deployment/">Home</a></button>
+		<h4 >Text upload for AYURVEDA </h4>
+		<hr>
+		<p>Copy and paste the chunk of text and get required conversions</p>	
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-12 portfolio-item">
+				<div class="input-group">
+					<h3><span class="badge badge-light units">Length</span></h3>
+					<select class="form-control option"  id="len" data-size="auto" name="Length Unit">
+						<option value="METERS">METERS</option>
+						<option value="CENTIMETERS">CENTIMETERS</option>
+						<option value="INCHES">INCHES</option>
+			        </select>
+		        </div>
+			</div>
+			<div class="col-lg-4 col-sm-12 portfolio-item">
+				<div class="input-group">
+					<h3><span class="badge badge-light units">Weight</span></h3>
+					<select class="form-control option" id="wt" data-size="auto" name="Weight Unit">
+						<option value="GRAMS">GRAMS</option>
+						<option value="MILLIGRAMS">MILLIGRAMS</option>
+						<option value="KILOGRAMS">KILOGRAMS</option>
+			        </select>
+		        </div>
+			</div>
+			<div class="col-lg-4 col-sm-12 portfolio-item">
+				<div class="input-group">
+					<h3><span class="badge badge-light units">Time</span></h3>
+					<select class="form-control option" id="time" data-size="auto" name="Time Unit">
+						<option value="SECONDS">SECONDS</option>
+						<option value="MINUTES">MINUTES</option>
+						<option value="HOURS">HOURS</option>
+			        </select>
+		        </div>
+			</div>
+		</div>
+
+	  	<div class="form-group">
+	    	<textarea class="form-control" id="result" rows="5"></textarea>
+	  	</div>
+	  	
+	  	<button type="button" id="convert" onclick="run();" class="btn btn-default">Convert</button>
+
+	  	<div class="form-group">
+	    	<label class="sr-only" for="exampleInputPassword3">Password</label>
+	    	<textarea class="form-control" id="float" rows="5"></textarea>
+	  	</div>
+	</div>
+		<script type="text/javascript">
+			var wta = ["PARAMANU","DHAVANSHI","MARICHI","LAL SARSHAP","TUNDAL","DHANYAMASH","YAVA","RATTI","ANDIKA","MASHAK","SHAAN","KOL","TOLA","KARSHA","SHUKTI","PAL","CHHATANK","PRASRTIS","CHHATAAK","KUDAV","MANIKA","PRASTHA","SER","ADHAKA","TULA","DRONA","SURPA","DRONI","BHARA","KHARI"];
+			var wtm = [0.0016,0.05,0.32,1.95,15.62,31.25,62.5,125,250,1000,3000,6000,12000,12000,24000,48000,60000,96000,186000,192000,384000,768000,960000,3073000,4800000,12228000,24576000,49152000,96000,196608000];
+			var wt3 = [1,1000,1000000];
+			var wtn = ["MILLIGRAMS","GRAMS","KILOGRAMS"];
+			var timea=["KSANA","LAVA","NIMESHA","KASTHA","KALA","GHATI","MUHURTA","AHORATRA","PAKSA","MASA","RITU","AYANA","SAMVATSARA","YUGA"];
+			var timem=[0.38,0.77,1.55,4.66,140,1440,2880,24*3600,15*86400,30*86400,60*86400,6*30*86400,12*30*86400,5*365*86400];
+			var timen = ["SECONDS","MINUTES","HOURS"];
+			var time3 = [1,60,3600];
+			var lena = ["YAVODARA","ANGULA","BITAHASTI","ARATNI","HASTA","RAJAHASTA","VYAMA"];
+			var lenm = [0.24,1.95,22.86,41.91,45.72,55.88,182.88];
+			var len3 = [1,100,2.54];
+			var lenn = ["CENTIMETERS","METERS","INCHES"];
+			var gnmbr,gunit="",s="";
+			function change(nmbr,unit,len,wt,time) {
+				var f=0,i,j;
+				//alert(unit);
+				for(i=0;i<wtm.length;i++) {
+					if(unit==wta[i] || unit==wta[i]+'S') {
+						f=1;
+						gnmbr=parseInt(nmbr)*wtm[i];
+						for(j=0;j<3;j++) {
+							if(wt==wtn[j]) {
+								gnmbr=gnmbr/wt3[j];
+								gunit=wtn[j];
+							}
+						}
+						
+						gnmbr=gnmbr.toFixed(3);
+						Math.round(gnmbr*1000)/1000;
+						break;
+					}
+				}
+				if(f==1)
+					return;
+				else {
+					for(i=0;i<timea.length;i++) {
+						if(unit==timea[i] || unit==timea[i]+'S') {
+							f=1;
+							//alert("found time "+f);
+							gnmbr=parseInt(nmbr)*timem[i];
+							for(j=0;j<3;j++) {
+								if(time==timen[j]) {
+									gnmbr=gnmbr/time3[j];
+									gunit=timen[j];
+								}
+							}
+							gnmbr=gnmbr.toFixed(3);
+							Math.round(gnmbr*1000)/1000;
+							break;
+						}
+					}
+					if(f==1)
+						return;
+					else {
+						for(i=0;i<lena.length;i++) {
+							if(unit==lena[i] || unit==lena[i]+'S') {
+								f=1;
+								//alert("found length "+f);
+								gnmbr=parseFloat(nmbr)*lenm[i];
+								for(j=0;j<3;j++) {
+									if(len==lenn[j]) {
+										gnmbr=gnmbr/len3[j];
+										gunit=lenn[j];
+									}
+								}
+								gnmbr=gnmbr.toFixed(3);
+								Math.round(gnmbr*1000)/1000;
+								break;
+							}
+						}
+						if(f==1)
+							return;
+
+						gnmbr=nmbr;
+						gunit=unit.toLowerCase();
+					}
+				}
+			}
+			function run () {
+				    var tex = $('#result').val();
+				    var len=$("#len").val();
+				    var wt=$("#wt").val();
+				    var time=$("#time").val();
+				    var nmbr="";
+				    var unit="";
+				    var i,j;
+					tex=tex.split("\n");
+					for(j=0;j<tex.length;j++){
+						var text=tex[j].split(" ");
+						for(i=0;i<text.length;i++) {
+							if(parseFloat(text[i]) && i!=text.length-1) {
+								nmbr=text[i];
+								unit=text[i+1];
+								unit=unit.toUpperCase();
+								gunit="";
+								change(nmbr,unit,len,wt,time);
+								s+=" "+gnmbr+" "+gunit;
+								i+=1;
+								continue;
+							}
+							s+=" "+text[i];
+						}
+						s+="\n";
+					}
+					//alert(s+"hiiiiii");
+					$("#float").val(s);
+					s="";
+					
+				}
+
+		</script>
+</body>
+</html>
 				background-image: url("./img/header.jpg");
 			}
 			#convert{
