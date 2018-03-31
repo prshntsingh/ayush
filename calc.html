@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Smart Converter</title>
+    <title>Speech to text converter in JS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
@@ -39,6 +39,9 @@
         background-color: #f05f40;
       }
       #synonyml {
+        color: red;
+      }
+      #synonymw {
         color: red;
       }
     </style>
@@ -258,6 +261,7 @@
               <option value="KILOGRAMS">KILOGRAMS</option>
             </select>
           </div>
+          <p id="synonymw" ></p>
         </div>
       <div class="col-lg-6 col-sm-12 portfolio-item">
           <h4> Weight Converter(KALINGA) </h4>
@@ -388,10 +392,12 @@
   }
 
       function WeightConverter(valNum) {
+        $("#synonymw").text("");
         var wta = ["PARAMAANU","VAMSEE","MAREECHI","RAAJIKA","SARSHAPEE","YAVA","GUNJA","MASHA","SAANA","KOLA","TOLA","KARSHA","SUKTI","PALA","PRASRUTHI","TULA","ADHAKA","KHARI","BHARA","DRONI","PRASTHA","MANIKA"];
         var wt3 = [0.0012,0.0361,0.217,1.302,3.906,31.25,125,750,3000,6000,12000,12000,24000,48000,96000,4800000,3072000,196600000,96000000,49152000,768000,384000];
         var neq = ["MILLIGRAMS","GRAMS","KILOGRAMS"];
         var veq = [1,1000,1000000];
+        var syn = ["PARAMAANU AND VAMSEE","PARAMAANU AND VAMSEE","","","","YAVA AND RATHIKA","GUNJA,HEMA AND DHAANYAKA","MASHA,TANKA AND DHARANA","SAANA, VATAKA , DRANGKSHANA AND KHSUDRAKA","KOLA ,AKSHA ,PICHU ,PAANITHALA ,PAANITHINDUKA ,PAANIMANIKA ,BIDAALAPADAKA ,SHODASIKA AND UDUMBARA","","KARSHA ,ASHTAMIKA AND ARDHAPALA","SUKTI,MUSHTI,AAMRA,CHATURDHIKA,PRAKUNCHAM AND SHODASEE"];
         var value0=$("#wtnmgd").val();
         var value3=$("#isin3").val();
         var value1=$("#isin1").val();
@@ -410,6 +416,8 @@
         }
         for(i=0;i<wta.length;i++) {
           if(value0==wta[i]) {
+            if(syn[i]!="")
+              $("#synonymw").text("* SYNONYMS ARE "+syn[i]);
             for(j=0;j<3;j++) {
               if(neq[j]==value3) {
                 var nval=valNum*wt3[i];
@@ -420,6 +428,7 @@
             } 
           }
         }
+
       }
     </script>
   </body>
