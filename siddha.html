@@ -1,0 +1,217 @@
+p]\<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real-time converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <style type="text/css">
+      body {
+        margin-top: 50px;
+      }
+      button {
+        margin-right: 12px;
+      }
+      .input-group {
+        margin-top: 5px;
+        margin-bottom: 20px;
+      }
+      .labels {
+        background-color: #2CB0C5;
+        color: white;
+        text-align: center;
+        padding: 4px;
+        margin-left: 2px;
+        width: 100px;
+      }
+      button a {
+          display: inline-block;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+      }
+      button a:hover {
+        text-decoration: none;
+        color: white;
+      }
+      button.right {
+        float: right;
+        background-color: #f05f40;
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <div class="container">
+      <button class="right btn btn-primary btn-md" role="button"><a href="index.html">Home</a></button>
+      <h3> Converter from Siddha Metric System To Modern Metric System </h3>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Weight Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="timeayu" type="number" oninput="TimeConverter(this.value)" onchange="TimeConverter(this.value)" placeholder="Ayurveda/Modern"> 
+            <select class="form-control" id="tim1" data-size="auto" name="Time Unit" onchange="TimeConverter($('#timeayu').val())">
+              <option value="ULUNTU">ULUNTU</option>
+              <option value="YAVAM">YAVAM</option>
+              <option value="MANCADI">MANCADI</option>
+              <option value="KUNRI">KUNRI</option>
+              <option value="VARAKAN-EDAI">VARAKAN-EDAI</option>
+              <option value="PALAM">PALAM</option>
+              <option value="TOLA">TOLA</option>
+              <option value="TUKKU">TUKKU</option>
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="sec" type="number" placeholder="Ayurveda">
+            <select class="form-control" id="tim2" data-size="auto" name="Time Unit" onchange="TimeConverter($('#timeayu').val())"">
+               <option value="ULUNTU">ULUNTU</option>
+              <option value="YAVAM">YAVAM</option>
+              <option value="MANCADI">MANCADI</option>
+              <option value="KUNRI">KUNRI</option>
+              <option value="VARAKAN-EDAI">VARAKAN-EDAI</option>
+              <option value="PALAM">PALAM</option>
+              <option value="TOLA">TOLA</option>
+              <option value="TUKKU">TUKKU</option>
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="hr" type="number" placeholder="Modern">
+            <select class="form-control" id="tim3" data-size="auto" name="Time Unit" onchange="TimeConverter($('#timeayu').val())"">
+              <option value="MILLIGRAMS">MILLIGRAMS</option>
+              <option value="GRAMS">GRAMS</option>
+              <option value="KILOGRAMS">KILOGRAMS</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-12 portfolio-item">
+          <h4> Volume Converter </h4>
+          <div class="input-group ">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="wtayu" type="number" oninput="WeightConverter(this.value)" onchange="WeightConverter(this.value)" placeholder="Ayurveda/Modern"> 
+            <select class="form-control" id="wtmod" name="Weight Unit">
+              <option value="TOLA">TOLA</option>
+              <option value="MILLILITRES">MILLILITRES</option>
+              <option value="LITRES">LITRES</option>
+            </select>
+          </div>
+          <div class="input-group ">
+            <input type="text" class="form-control" id="lmodm" type="number" placeholder="Modern">
+            <select class="form-control" id="lenmodm" name="Length Unit" onchange="LengthConverter($('#lenayu').val())">
+              <option value="MILLILITRES">MILLILITRES</option>
+              <option value="LITRES">LITRES</option>
+            </select>
+          </div>
+        </div>
+        
+       </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+
+          function TimeConverter(valNum) {
+
+          	  var timea=["ULUNTU","YAVAM","MANCADI","KUNRI","VARAKAN-EDAI","PALAM","TOLA","TUKKU","MILLIGRAMS","GRAMS","KILOGRAMS"];
+
+          	  var timem=[65,130/4,260,780/6,(41.6/10)*1000,(10.4/0.25)*1000,11.7*1000,(3.5/2)*1000000,1,1000,1000000];
+
+            // var timea=["GRAIN","CHAWAL","JO","RATTI","SUKHA","DANGA","MASHA","MISKALA","TOLA","RUPYA","AAQYA","RATALA","SERA","MILLIGRAMS","GRAMS","KILOGRAMS"];
+
+            // var timem=[15.58,15.58,63.32,125,125,500,970,4500,11664,57326,350000,468500,937000,1,1000,1000000];
+
+        var value1=$("#tim1").val();
+        var value2=$("#tim2").val();
+        var value3=$("#tim3").val();
+
+        var i,j;
+
+        for(i=0;i<timea.length;i++) {
+          if(value1==timea[i]) {
+            for(j=0;j<timea.length;j++) {
+              if(value2==timea[j]) {
+               // var nval = valNum*
+                var nval=valNum*timem[i];
+                //var dval=timem[j];
+                var fval=nval/timem[j];
+                //alert(fval+" "+dval);
+                $("#sec").val(fval);
+              }
+            }
+            for(j=0;j<timea.length;j++) {
+              if(value3==timea[j]) {
+                var nval=valNum*timem[i];
+                var fval=nval/timem[j];
+                //alert(fval+" "+dval);
+                $("#hr").val(fval);
+              }
+            }
+          }
+        }
+        value1="";
+        value2="";
+  }
+
+      function LengthConverter(valNum) {
+        var lena=["GRAIN","CHAWAL","JO","RATTI","SUKHA","DANGA","MASHA","MISKALA","TOLA","RUPYA","AAQYA","RATALA","SERA","MILLIGRAMS","GRAMS","KILOGRAMS"];
+        var lenm=[15.58,63.32,125,125,500,970,4500,11664,57326,350000,468500,973000];
+        var nmm=["MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS","MILLIGRAMS"];
+        var vmm=[0.394,10,1,0.01,0.001,0.0328];
+        var lenaa=[1,8.125,95.251,174.626,190.502,232.835,232.835,762.006];
+        var value1=$("#lenmod").val();
+        var value2=$("#lenmoda").val();
+        var value3=$("#lenmodm").val();
+        var i,j;
+        for(i=0;i<lena.length;i++) {
+          if(value1==lena[i]) {
+            for(j=0;j<lena.length;j++) {
+              if(value2==lena[j]) {
+                var nval=valNum*lenaa[i];
+                var dval=lenaa[j];
+                var fval=nval/dval;
+                //alert(fval+" "+dval);
+                $("#lmoda").val(fval);
+              }
+            }
+            for(j=0;j<nmm.length;j++) {
+              if(value3==nmm[j]) {
+                var nval=valNum*lenm[i];
+                var dval=vmm[j];
+                var fval=nval*dval;
+                //alert(fval+" "+dval);
+                $("#lmodm").val(fval);
+              }
+            }
+          }
+        }
+        value1="";
+        value2="";
+      }
+
+      function WeightConverter(valNum) {
+        var wta = ["TOLA"];
+        var wtm = [12];
+
+        var value=$("#wtmod").val();
+        var i;
+        for(i=0;i<wta.length;i++) {
+          if(value==wta[i]) {
+            var fval=valNum*wtm[i];
+            $("#gm").val(fval);
+            $("#mg").val(fval*1000);
+            $("#kg").val(fval/1000);
+            $("#q").val(fval/100000);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
